@@ -1,5 +1,7 @@
 import express, { application } from "express"; //importa express
 import userRoutes from "./modules/users/user.routes";
+import seriviceRouter from "./modules/services/service.routes";
+
 
 const app = express()  //es mi API (agrego rutas, middlewares, codngis)
 
@@ -10,6 +12,7 @@ const app = express()  //es mi API (agrego rutas, middlewares, codngis)
 //rutas API
 app.use(express.json())  //cuando venga JSON, conviertelo automáticamente a obj js"
 app.use(userRoutes);
+app.use(seriviceRouter);
 
 
 

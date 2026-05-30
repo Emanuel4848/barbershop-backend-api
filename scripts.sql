@@ -7,3 +7,10 @@ create table users (
 	created_at timestamp default current_timestamp  //pa guardar la hora y fecha de registro
 )
 
+create table barber_services (
+	id_service serial PRIMARY KEY,
+	name varchar(150) not null,
+	description varchar(500),
+	price decimal(10,2) not null,
+	created_at timestamp default current_timestamp
+)
