@@ -14,11 +14,11 @@ import { ZodError } from "zod";
 
 
 export const createUser = async (req: Request, res: Response) => {
-
         const user = await createUserR (
             req.body.name,
             req.body.email,
-            req.body.password
+            req.body.password,
+            req.body.id_rol
         );
 
         res.json({message: "usuario creado", user,});
@@ -30,9 +30,9 @@ export const createUser = async (req: Request, res: Response) => {
 
 
 
-export const getUsers = async (req: Request, res: Response) => {        //async debe llevar await.
-    const users = await finAllUsers()                        //await: espera el resultado antes de continuar.
-    res.json({users})                                                   //user tiene el resualtado
+export const getUsers = async (req: Request, res: Response) => {        
+    const users = await finAllUsers()                       
+    res.json({users})                                              
 }
 
 
@@ -52,11 +52,11 @@ export const updateUser = async (req: Request, res: Response) => {
         req.body.name,
         req.body.email,
         req.body.password,
-        req.body.role,
+        req.body.id_rol
         )
 
     res.json({
-        mesagge: "usuario actualizado",
+        message: "usuario actualizado",
         user
     });
 

@@ -14,3 +14,50 @@ create table barber_services (
 	price decimal(10,2) not null,
 	created_at timestamp default current_timestamp
 )
+
+
+
+create table roles (
+	id_rol serial PRIMARY KEY,
+	name varchar(50) not null unique,
+	description varchar(255)
+)
+
+
+
+alter table users
+add column id_rol integer
+
+update users
+set id_rol = roles.id_rol
+from roles
+where users.role = roles.name;
+
+
+
+alter table users
+alter column id_rol set not null;
+
+
+alter table users
+add constraint fk_users_roles
+foreign key (id_rol)
+references roles(id_rol)
+
+
+alter table users
+drop column role;
+
+
+
+
+
+create table clients (
+	id_cliente serial PRIMARY KEY,
+	name varchar(150) not null,
+	telefono varchar(20) not null,
+	email varchar(150),
+	created_at timestamp default current_timestamp
+	
+)
+

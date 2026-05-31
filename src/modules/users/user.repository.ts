@@ -1,13 +1,15 @@
+import { number } from "zod";
 import { prisma } from "../../config/prisma";
 
 
 
-export const createUserR = async (name: string, email: string, password: string) => {
+export const createUserR = async (name: string, email: string, password: string, id_rol: number) => {
     return await prisma.users.create({
         data: {
             name: name,
             email: email,
-            password: password
+            password: password,
+            id_rol: id_rol
         }
     })
 }
@@ -31,7 +33,7 @@ export const findUserById = async (id: number) => {
 };
 
 
-export const updateUserR = async (id: number, name: string, email: string, password: string, role: string) => {
+export const updateUserR = async (id: number, name: string, email: string, password: string, id_rol: number) => {
     return await prisma.users.update({
         where: {
             id_usuario: id,
@@ -40,7 +42,7 @@ export const updateUserR = async (id: number, name: string, email: string, passw
             name: name,
             email: email,
             password: password,
-            role: role
+            id_rol: id_rol
         }
     });
 };
