@@ -3,7 +3,7 @@ import userRoutes from "./modules/users/user.routes";
 import seriviceRouter from "./modules/services/service.routes";
 import rolesRouter from "./modules/roles/role.routes";
 import clientsRouter from "./modules/clients/clients.routes"
-
+import barbersRouter from "./modules/barbers/barber.routes"
 
 const app = express()  //es mi API (agrego rutas, middlewares, codngis)
 
@@ -17,6 +17,7 @@ app.use(userRoutes);
 app.use(seriviceRouter);
 app.use(rolesRouter);
 app.use(clientsRouter);
+app.use(barbersRouter);
 
 
 
