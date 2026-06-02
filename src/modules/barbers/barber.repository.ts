@@ -2,7 +2,7 @@ import { prisma } from "../../config/prisma";
 
 
 
-export const createBarberR = async (id_usuario: number, specialty: string, is_active: boolean) => {
+export const createBarberR = async (id_usuario: number, specialty?: string, is_active?: boolean) => {
     return await prisma.barbers.create({
         data: {
             id_usuario: id_usuario,
@@ -57,7 +57,7 @@ export const deleteBarberR = async (id: number) => {
 
 
 
-export const buscarUsuarioConRolPorId = async (id_usuario: number) => {
+export const buscarUsuarioConRolPorIdR = async (id_usuario: number) => {
     return await prisma.users.findUnique({
         where: {
             id_usuario: id_usuario,       //trae usuario
@@ -67,3 +67,15 @@ export const buscarUsuarioConRolPorId = async (id_usuario: number) => {
         }
     });
 }
+
+
+
+export const buscarBarberoPorUsuarioIdR = async (id_usuario: number) => {
+    return await prisma.barbers.findUnique({
+        where: {
+            id_usuario: id_usuario,
+        }
+    })
+}
+
+  
