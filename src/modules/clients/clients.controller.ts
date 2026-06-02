@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Prisma } from "@prisma/client";
-import { createClientR, deleteClientR, findAllClients, updateClienteR } from "./clients.repository";
+import { createClientR, deleteClientR, findAllClients, getClientByIdR, updateClienteR } from "./clients.repository";
 import { numKeys } from "zod/v4/core/util.cjs";
 import { number } from "zod";
 
@@ -11,15 +11,32 @@ export const getClients = async (req: Request, res: Response) => {
     res.json({clients})
 }
 
+export const getClientByIdC = async (req: Request, res: Response) => {
+    const id = Number(req.params.id)
+    const client = await getClientByIdR(id)
+
+    res.json(client)
+}
+
+
 
 export const createClient = async (req: Request, res: Response) => {
-    const client = await createClientR(
-        req.body.name,
-        req.body.telefono,
-        req.body.email
-    );
 
-    res.json({message: "Cliente creado", client})
+    try {
+        const client = await createClientR(
+            req.body.name,
+            req.body.telefono,
+            req.body.email
+        );
+    
+        res.json({message: "Cliente creado", client})
+
+    } catch (error: any) {
+        res.status(400).json({
+            message: error.message,
+        })
+    }
+
 }
 
 
