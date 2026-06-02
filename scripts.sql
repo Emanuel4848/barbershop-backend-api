@@ -61,3 +61,14 @@ create table clients (
 	
 )
 
+create table barbers (
+	id_barber serial PRIMARY KEY,
+	id_usuario integer not null unique,
+	specialty varchar(150),
+	is_active boolean default true,
+	created_at timestamp default current_timestamp,
+
+	constraint fk_barbers_users
+	foreign key (id_usuario)
+	references users(id_usuario)
+)
