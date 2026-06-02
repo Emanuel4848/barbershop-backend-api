@@ -42,6 +42,8 @@ export const updateServiceR = async (id: number, name: string, description: stri
 }
 
 
+
+
 export const deleteServiceR = async (id: number) => {
     return await prisma.barber_services.delete({
         where: {
@@ -49,3 +51,15 @@ export const deleteServiceR = async (id: number) => {
         }
     })
 }
+
+
+
+export const existeServicioPorNameR = async (name: string) => {
+    return await prisma.barber_services.findUnique({
+        where: {
+            name: name
+        }
+    })
+}
+
+

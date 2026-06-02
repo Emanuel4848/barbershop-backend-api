@@ -72,3 +72,11 @@ create table barbers (
 	foreign key (id_usuario)
 	references users(id_usuario)
 )
+
+
+
+alter table barber_services
+add constraint servicios_nombre_unico unique (name);
+
+
+

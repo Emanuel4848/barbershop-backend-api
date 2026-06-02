@@ -3,18 +3,26 @@ import { createServiceR, deleteServiceR, updateServiceR } from "./service.reposi
 import { findAllServices } from "./service.repository";
 import { findServiceById } from "./service.repository";
 import { Numeric } from "zod/v4/core/util.cjs";
+import { createServiceS, updateServiceS } from "./service.service";
 
 
 export const createService = async (req: Request, res: Response) => {
+    try {
+        const service = await createServiceS(
+            req.body.name,
+            req.body.description,
+            req.body.price
+        )
+        res.json({message: "Servicio creado", service});
 
-    const service = await createServiceR (
-        req.body.name,
-        req.body.description,
-        req.body.price
-    );
-
-    res.json({message: "Servicio creado", service})
+    } catch (error: any) {
+        res.status(400).json({
+            message: error.message
+        })
+    }
 };
+
+
 
 
 export const getServices = async (req: Request, res: Response) => {
@@ -34,16 +42,21 @@ export const getService = async (req: Request, res: Response) => {
 
 
 export const updateService = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
+    try {
+        const id = Number(req.params.id);
+        const service = await updateServiceS(id,
+                req.body.name,
+                req.body.description,
+                req.body.price
+        ); 
+    
+        res.json({ message: "Servicio actualizado", service})
+    } catch (error:any) {
+        res.status(400).json({
+            message: error.message,
+        })
+    }
 
-
-    const service = await updateServiceR(id,
-            req.body.name,
-            req.body.description,
-            req.body.price
-    ); 
-
-    res.json({ message: "Servicio actualizado", service})
 };
 
 
