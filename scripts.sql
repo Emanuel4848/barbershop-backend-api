@@ -80,3 +80,5 @@ add constraint servicios_nombre_unico unique (name);
 
 
 
+alter table users
+add constraint email_unico unique (email);

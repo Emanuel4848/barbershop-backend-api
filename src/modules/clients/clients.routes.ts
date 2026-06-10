@@ -2,12 +2,15 @@ import { Router } from "express";
 import { createClient, deleteClient, getClientByIdC, getClients, updateCliente } from "./clients.controller";
 import { createClientSchema, updateClientSchema } from "./clients.schema";
 import { validate } from "../../middlewares/validate";
+import { authMiddleware } from "../../middlewares/auth.middlewar";
+
+
 
 const router = Router();
 
 
 
-router.get("/clients", getClients)
+router.get("/clients", authMiddleware, getClients);
 router.post("/clients", validate(createClientSchema), createClient);
 router.put("/clients/:id", validate(updateClientSchema), updateCliente)
 router.delete("/clients/:id", deleteClient)
