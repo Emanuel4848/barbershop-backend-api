@@ -3,6 +3,11 @@ import jwt from "jsonwebtoken";
 import { decode } from "node:punycode";
 
 
+//full para verificar token
+//lee el token
+//verifica si el usuario esta logueado
+// guarda datos en req.user
+
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;   //en los headers busca el campo "authorization"        (Authorization: Bearer eyJ....)
 
