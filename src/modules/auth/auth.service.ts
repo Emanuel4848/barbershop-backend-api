@@ -1,30 +1,10 @@
 import { th } from "zod/v4/locales";
-import { buscarUserByEmailR, registerUsuarioAuthR } from "./auth.repository"
+import { buscarUserByEmailR } from "./auth.repository"
 import { error } from "node:console";
 import bcrypt from "bcrypt";
 import { email, string } from "zod";
 import jwt from "jsonwebtoken";
 
-
-//crear user con password hasheado
-export const registerUserS = async(name: string, email: string , password: string, id_rol: number) => {
-    const ExisteUser  = await buscarUserByEmailR(email);
-
-    if (ExisteUser) {
-        throw new Error("El email ya esta registrado")
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await registerUsuarioAuthR(
-        name,
-        email,
-        hashedPassword,
-        id_rol   
-    )
-    return user
-
-}
 
 
 

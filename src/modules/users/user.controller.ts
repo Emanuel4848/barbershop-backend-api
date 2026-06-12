@@ -8,13 +8,15 @@ import { deleteUserR } from "./user.repository";
 import { createUserSchema } from "./user.schema";
 import { z } from "zod";
 import { ZodError } from "zod";
+import { createUserS, updateUserS } from "./user.service";
 
 
 
 
 
 export const createUser = async (req: Request, res: Response) => {
-        const user = await createUserR (
+    try {
+        const user = await createUserS (
             req.body.name,
             req.body.email,
             req.body.password,
@@ -22,6 +24,13 @@ export const createUser = async (req: Request, res: Response) => {
         );
 
         res.json({message: "usuario creado", user,});
+
+    } catch (error: any) {
+        res.status(400).json({
+            message: error.message
+        })
+    }
+        
 };
 
 
@@ -46,19 +55,28 @@ export const getUserByiD = async (req: Request, res: Response) => {
 } 
 
 export const updateUser = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
 
-    const user = await updateUserR(id, 
-        req.body.name,
-        req.body.email,
-        req.body.password,
-        req.body.id_rol
-        )
+    try {
+        const id = Number(req.params.id);
 
-    res.json({
-        message: "usuario actualizado",
-        user
-    });
+        const user = await updateUserS(id, 
+            req.body.name,
+            req.body.email,
+            req.body.password,
+            req.body.id_rol
+            )
+
+        res.json({
+            message: "usuario actualizado",
+            user
+        });
+
+    } catch (error: any) {
+        res.status(400).json({
+            message: error.message
+        })
+    }
+    
 
 };
 
