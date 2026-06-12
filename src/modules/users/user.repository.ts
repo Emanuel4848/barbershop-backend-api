@@ -1,4 +1,4 @@
-import { number } from "zod";
+import { email, number } from "zod";
 import { prisma } from "../../config/prisma";
 
 
@@ -13,6 +13,22 @@ export const createUserR = async (name: string, email: string, password: string,
         }
     })
 }
+
+
+
+
+
+export const buscarrUserByEmailR = async (email: string) => {
+    return await prisma.users.findUnique({
+        where: {
+            email: email
+        }, 
+        include: {
+            roles: true
+        }
+    })
+}
+
 
 
 
@@ -33,7 +49,7 @@ export const findUserById = async (id: number) => {
 };
 
 
-export const updateUserR = async (id: number, name: string, email: string, password: string, id_rol: number) => {
+export const updateUserR = async (id: number, name?: string, email?: string, password?: string, id_rol?: number) => {
     return await prisma.users.update({
         where: {
             id_usuario: id,
