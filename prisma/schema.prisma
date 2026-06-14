@@ -19,11 +19,12 @@ model users {
 }
 
 model barber_services {
-  id_service  Int       @id @default(autoincrement())
-  name        String    @unique(map: "servicios_nombre_unico") @db.VarChar(150)
-  description String?   @db.VarChar(500)
-  price       Decimal   @db.Decimal(10, 2)
-  created_at  DateTime? @default(now()) @db.Timestamp(6)
+  id_service   Int            @id @default(autoincrement())
+  name         String         @unique(map: "servicios_nombre_unico") @db.VarChar(150)
+  description  String?        @db.VarChar(500)
+  price        Decimal        @db.Decimal(10, 2)
+  created_at   DateTime?      @default(now()) @db.Timestamp(6)
+  appointments appointments[]
 }
 
 model roles {
@@ -34,18 +35,36 @@ model roles {
 }
 
 model clients {
-  id_cliente Int       @id @default(autoincrement())
-  name       String    @db.VarChar(150)
-  telefono   String    @db.VarChar(20)
-  email      String?   @db.VarChar(150)
-  created_at DateTime? @default(now()) @db.Timestamp(6)
+  id_cliente   Int            @id @default(autoincrement())
+  name         String         @db.VarChar(150)
+  telefono     String         @db.VarChar(20)
+  email        String?        @db.VarChar(150)
+  created_at   DateTime?      @default(now()) @db.Timestamp(6)
+  appointments appointments[]
 }
 
 model barbers {
-  id_barber  Int       @id @default(autoincrement())
-  id_usuario Int       @unique
-  specialty  String?   @db.VarChar(150)
-  is_active  Boolean?  @default(true)
-  created_at DateTime? @default(now()) @db.Timestamp(6)
-  users      users     @relation(fields: [id_usuario], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "fk_barbers_users")
+  id_barber    Int            @id @default(autoincrement())
+  id_usuario   Int            @unique
+  specialty    String?        @db.VarChar(150)
+  is_active    Boolean?       @default(true)
+  created_at   DateTime?      @default(now()) @db.Timestamp(6)
+  appointments appointments[]
+  users        users          @relation(fields: [id_usuario], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "fk_barbers_users")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model appointments {
+  id_appointment   Int             @id @default(autoincrement())
+  id_cliente       Int
+  id_barber        Int
+  id_service       Int
+  appointment_date DateTime        @db.Timestamp(6)
+  status           String          @default("scheduled") @db.VarChar(30)
+  created_at       DateTime?       @default(now()) @db.Timestamp(6)
+  barber_services  barber_services @relation(fields: [id_service], references: [id_service], onDelete: NoAction, onUpdate: NoAction, map: "fk_appointments_barber_services")
+  barbers          barbers         @relation(fields: [id_barber], references: [id_barber], onDelete: NoAction, onUpdate: NoAction, map: "fk_appointments_barbers")
+  clients          clients         @relation(fields: [id_cliente], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "fk_appointments_clients")
+
+  @@unique([id_barber, appointment_date], map: "unique_barber_for_appointment")
 }

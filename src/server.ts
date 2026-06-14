@@ -5,6 +5,8 @@ import rolesRouter from "./modules/roles/role.routes";
 import clientsRouter from "./modules/clients/clients.routes"
 import barbersRouter from "./modules/barbers/barber.routes"
 import authRouter from "./modules/auth/auth.routes"
+import appointmentsRouter from "./modules/appointments/appointment.routes"
+
 
 const app = express()  //es mi API (agrego rutas, middlewares, codngis)
 
@@ -20,6 +22,7 @@ app.use(rolesRouter);
 app.use(clientsRouter);
 app.use(barbersRouter);
 app.use(authRouter);
+app.use(appointmentsRouter)
 
 
 
