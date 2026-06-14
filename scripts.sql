@@ -82,3 +82,42 @@ add constraint servicios_nombre_unico unique (name);
 
 alter table users
 add constraint email_unico unique (email);
+
+
+
+
+
+
+create table appointments (
+	id_appointment SERIAL PRIMARY KEY,
+	id_cliente integer not null,
+	id_barber integer not null,
+	id_service integer not null,
+	appointment_date timestamp not null,
+	status varchar(30) not null default 'scheduled',
+	created_at timestamp default current_timestamp
+)
+
+alter table appointments
+add constraint fk_appointments_clients
+	foreign key (id_cliente)
+	references clients(id_cliente);
+
+alter table appointments
+add constraint fk_appointments_barberS
+	foreign key (id_barber)
+	references barbers(id_barber);
+
+alter table appointments
+add constraint fk_appointments_barber_services
+	foreign key (id_service)
+	references barber_services(id_service);
+
+alter table appointments
+add constraint unique_barber_for_appointment
+	unique (id_barber, appointment_date);
+
+
+alter table appointments
+add constraint chk_appointments_status
+check (status in ('scheduled', 'completed', 'cancelled'));
