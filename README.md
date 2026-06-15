@@ -101,4 +101,4 @@ Archivos principales:
 * `.dockerignore`: evita copiar archivos innecesarios o sensibles a la imagen.
 * `.env.example`: muestra las variables necesarias sin exponer credenciales reales.
 
-El archivo `.env` y `.env.docker` no deben subirse al repositorio.
+
