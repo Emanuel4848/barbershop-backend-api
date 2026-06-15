@@ -121,3 +121,30 @@ add constraint unique_barber_for_appointment
 alter table appointments
 add constraint chk_appointments_status
 check (status in ('scheduled', 'completed', 'cancelled'));
+
+
+
+
+
+select a.id_service, s.name, count(*) as cantidad
+from appointments a
+inner join barber_services s on a.id_service = s.id_service
+group by a.id_service, s.name
+order by cantidad desc
+
+
+
+select b.id_barber, u.name, count(*) Cantidad
+from appointments a
+inner join barbers b on b.id_barber = a.id_barber
+inner join users u on b.id_usuario = u.id_usuario
+group by b.id_barber, u.name
+order by Cantidad desc
+
+
+select coalesce(sum(s.price), 0) total_revenue
+from appointments a
+inner join barber_services s on s.id_service = a.id_service
+where a.status = 'completed'
+
+
