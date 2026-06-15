@@ -33,9 +33,9 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
 
     try {
-        console.log(token);
+        //console.log(token);
         const decoded = jwt.verify(token, process.env.JWT_SECRET!);  //verifica token contra clave
-        console.log(decoded);  //datos dentro del token, lo que retorne en service auth. //contenido ya leido del token
+        //console.log(decoded);  //datos dentro del token, lo que retorne en service auth. //contenido ya leido del token
     //iat: cuando se creo el token
     //exp: cuando expira el token
         (req as any).user = decoded; //en la req actual, guarda los datos deltoken en la propiedad user

@@ -1,4 +1,5 @@
-import express, { application } from "express"; //importa express
+import express from "express";
+import "dotenv/config";
 import userRoutes from "./modules/users/user.routes";
 import seriviceRouter from "./modules/services/service.routes";
 import rolesRouter from "./modules/roles/role.routes";
@@ -9,7 +10,7 @@ import appointmentsRouter from "./modules/appointments/appointment.routes"
 import reportsRouter from "./modules/reports/report.routes"
 
 
-const app = express()  //es mi API (agrego rutas, middlewares, codngis)
+const app = express()
 
 
 
@@ -37,7 +38,7 @@ app.get("/", (req, res) => {    //al entrar a localhost, ejeuctar la funcion.
     });
 });
 
-const PORT = 3000;      //puerto para escuchar request
+const PORT = process.env.PORT || 3000;      //puerto para escuchar request
 
 app.listen(PORT, () => {        //inicia el servidor
     console.log(`servidor corriendo en el puerto ${PORT}`);

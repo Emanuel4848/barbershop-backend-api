@@ -4,7 +4,7 @@ import { getClientByIdR } from "../clients/clients.repository"
 import { findServiceById } from "../services/service.repository"
 import { createAppointmentR, deleteAppointmentR, findAppointmentByBarberAndDate, findAppointmentByIdR, findAppointmentsR, updateAppointmentR } from "./appointments.repository"
 import { error } from "node:console"
-import { numKeys } from "zod/v4/core/util.cjs"
+
 import { stat } from "node:fs"
 
 

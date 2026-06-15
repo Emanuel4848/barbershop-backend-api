@@ -1,19 +1,23 @@
-node_modules
-# Keep environment variables out of version control
-.env
-
-/src/generated/prisma
-
-
+# Dependencies
 node_modules/
-dist/
-.env
-*.log
 
+# Environment variables
+.env
+.env.docker
+
+# Build output
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Prisma generated files
+/src/generated/prisma
 .prisma/
 generated/
 
+# Editor / OS files
+.vscode/
 .DS_Store
 Thumbs.db
-
-.vscode/
