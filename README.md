@@ -2,8 +2,10 @@
 
 ![System Architecture](./SystemArchitecture.png)
 
-Backend desplegado: 
+## Backend Desplegado:
+
 https://barbershop-backend-api-production.up.railway.app/
+
 Backend REST API desarrollado con enfoque en **seguridad, arquitectura por capas, separación de responsabilidades, reglas de negocio y despliegue en la nube**.
 
 El proyecto implementa autenticación con **JWT**, autorización por roles, hash de contraseñas con **bcrypt**, validación de datos con **Zod**, acceso a datos mediante **Prisma ORM**, base de datos **PostgreSQL**, contenedorización con **Docker** y despliegue en **Railway** utilizando **Supabase** como base de datos en producción.
