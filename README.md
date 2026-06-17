@@ -2,6 +2,8 @@
 
 ![System Architecture](./SystemArchitecture.png)
 
+Backend desplegado: 
+https://barbershop-backend-api-production.up.railway.app/
 Backend REST API desarrollado con enfoque en **seguridad, arquitectura por capas, separación de responsabilidades, reglas de negocio y despliegue en la nube**.
 
 El proyecto implementa autenticación con **JWT**, autorización por roles, hash de contraseñas con **bcrypt**, validación de datos con **Zod**, acceso a datos mediante **Prisma ORM**, base de datos **PostgreSQL**, contenedorización con **Docker** y despliegue en **Railway** utilizando **Supabase** como base de datos en producción.
@@ -43,8 +45,8 @@ El proyecto implementa autenticación con **JWT**, autorización por roles, hash
 ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
 ![Railway](https://img.shields.io/badge/Railway-Deployment-0B0D0E?style=for-the-badge\&logo=railway\&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge\&logo=supabase\&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-API Testing-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
-![Git](https://img.shields.io/badge/Git-Version Control-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-APITesting-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Git](https://img.shields.io/badge/Git-VersionControl-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ---
 
