@@ -1,25 +1,34 @@
 # Barber SaaS Backend
 
-Backend REST API desarrollado con Node.js, TypeScript, Express.js, PostgreSQL y Prisma ORM.
+![System Architecture](./SystemArchitecture.png)
 
-El enfoque principal del proyecto está en seguridad, arquitectura backend y reglas de negocio. Implementa autenticación con JWT, autorización basada en roles, hash de contraseñas, validación de datos, arquitectura modular por capas, Repository Pattern, Service Layer, control de disponibilidad para citas y reportes operativos del negocio.
+Backend REST API desarrollado con enfoque en **seguridad, arquitectura por capas, separación de responsabilidades, reglas de negocio y despliegue en la nube**.
+
+El proyecto implementa autenticación con **JWT**, autorización por roles, hash de contraseñas con **bcrypt**, validación de datos con **Zod**, acceso a datos mediante **Prisma ORM**, base de datos **PostgreSQL**, contenedorización con **Docker** y despliegue en **Railway** utilizando **Supabase** como base de datos en producción.
+
+---
 
 ## Enfoque técnico principal
 
-* Autenticación segura con JWT.
-* Autorización por roles: owner, admin y barber.
-* Hash de contraseñas con bcrypt.
+* Autenticación segura mediante JWT.
+* Autorización basada en roles (owner, admin y barber).
+* Contraseñas protegidas con bcrypt.
 * Validación de datos con Zod.
 * Arquitectura modular por capas.
-* Repository Pattern para separar el acceso a datos.
-* Service Layer para manejar lógica de negocio.
-* Middlewares de autenticación, autorización y validación.
-* Reglas de negocio para evitar choque de horarios en citas.
-* Reportes operativos usando Prisma y SQL directo.
-* Configuración con variables de entorno.
-* Preparación para ejecución en contenedores con Docker.
-* Manejo de ramas en Git por funcionalidad.
-* API probada con Postman.
+* Separación clara de responsabilidades entre routes, middlewares, controllers, services y repositories.
+* Implementación de Repository Pattern.
+* Implementación de Service Layer.
+* Prisma ORM para acceso y mapeo de datos.
+* Reglas de negocio para control de disponibilidad de citas.
+* Reportes operativos utilizando Prisma y SQL.
+* Configuración mediante variables de entorno.
+* Contenedorización con Docker.
+* Despliegue en Railway.
+* PostgreSQL desplegado en Supabase.
+* API documentada y probada con Postman.
+* Flujo de trabajo con Git y GitHub utilizando ramas por funcionalidad.
+
+---
 
 ## Tecnologías utilizadas
 
@@ -32,56 +41,189 @@ El enfoque principal del proyecto está en seguridad, arquitectura backend y reg
 ![bcrypt](https://img.shields.io/badge/bcrypt-Password%20Hashing-blue?style=for-the-badge)
 ![Zod](https://img.shields.io/badge/Zod-Validation-3E67B1?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-API%20Testing-FF6C37?style=for-the-badge\&logo=postman\&logoColor=white)
-![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?style=for-the-badge\&logo=git\&logoColor=white)
+![Railway](https://img.shields.io/badge/Railway-Deployment-0B0D0E?style=for-the-badge\&logo=railway\&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge\&logo=supabase\&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-API Testing-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Git](https://img.shields.io/badge/Git-Version Control-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+---
 
 ## Arquitectura
 
-El proyecto utiliza una arquitectura modular por capas para separar responsabilidades y mantener el código organizado.
+El proyecto utiliza una arquitectura modular por capas para mantener el código organizado, escalable y fácil de mantener.
 
 ```txt
-routes
+Client / Postman
 ↓
-middlewares
+Express API Routes
 ↓
-controllers
+Middlewares
 ↓
-services
+Controllers
 ↓
-repositories
+Services
+↓
+Repositories
 ↓
 Prisma ORM
 ↓
 PostgreSQL
 ```
 
+### Responsabilidad de cada capa
+
+* **Routes:** definen los endpoints de la API.
+* **Middlewares:** gestionan autenticación, autorización por roles y validación de datos.
+* **Controllers:** reciben las solicitudes HTTP y construyen las respuestas.
+* **Services:** contienen reglas de negocio y validaciones principales.
+* **Repositories:** centralizan el acceso a los datos.
+* **Prisma ORM:** mapea los modelos de la aplicación hacia PostgreSQL.
+* **PostgreSQL:** almacena la información del sistema.
+
+---
+
+## Capturas del proyecto
+
+### Arquitectura del sistema
+
+![System Architecture](./SystemArchitecture.png)
+
+### Backend desplegado
+
+![Backend Running](./screenshots/appWeb.png)
+
+
+### Endpoint muestra de roles
+
+![Roles Endpoint](./screenshots/getRoles.png)
+
+---
+
 ## Patrones y buenas prácticas aplicadas
 
-* Repository Pattern: separa las consultas a base de datos de la lógica del sistema.
-* Service Layer: concentra validaciones y reglas de negocio.
-* Middlewares: controlan autenticación, autorización y validación de datos.
-* Modularización por dominio: users, auth, roles, clients, services, barbers, appointments y reports.
-* Manejo de errores desde services y controllers.
-* Uso de variables de entorno para configuración sensible.
-* Flujo de trabajo con ramas por funcionalidad en Git.
+* Repository Pattern.
+* Service Layer.
+* Arquitectura por capas.
+* Separación de responsabilidades.
+* Modularización por dominio.
+* Manejo centralizado de errores.
+* Uso de variables de entorno.
+* Desarrollo mediante ramas de funcionalidad en Git.
+
+---
 
 ## Seguridad
 
-* Login con JWT.
-* Middleware para verificar token.
+* Login mediante JWT.
 * Protección de rutas privadas.
-* Control de permisos por rol.
-* Contraseñas protegidas con bcrypt.
-* Validación de entrada con Zod.
+* Middleware de autenticación.
+* Middleware de autorización por roles.
+* Contraseñas protegidas mediante bcrypt.
+* Validación de entrada mediante Zod.
 * Separación entre autenticación y autorización.
-* Variables sensibles fuera del repositorio mediante archivos `.env`.
+* Variables sensibles fuera del repositorio.
+
+---
 
 ## Reglas de negocio
 
 * Un barbero no puede tener dos citas en el mismo horario.
 * Las citas manejan estados controlados: scheduled, completed y cancelled.
-* Se valida la existencia de cliente, barbero y servicio antes de crear o actualizar una cita.
-* Los reportes están protegidos para usuarios owner y admin.
+* Se valida la existencia de clientes, barberos y servicios antes de crear o actualizar registros.
+* Los reportes están restringidos a usuarios owner y admin.
+
+---
+
+## Módulos principales
+
+* Auth
+* Users
+* Roles
+* Clients
+* Services
+* Barbers
+* Appointments
+* Reports
+
+---
+
+## Endpoints principales
+
+La mayoría de endpoints requieren autenticación mediante JWT.
+
+### Auth
+
+```txt
+POST /auth/login
+GET  /auth/me
+```
+
+### Users
+
+```txt
+POST   /users
+GET    /users
+GET    /users/:id
+PUT    /users/:id
+DELETE /users/:id
+```
+
+### Roles
+
+```txt
+GET /roles
+```
+
+### Services
+
+```txt
+POST   /services
+GET    /services
+GET    /services/:id
+PUT    /services/:id
+DELETE /services/:id
+```
+
+### Clients
+
+```txt
+POST   /clients
+GET    /clients
+GET    /clients/:id
+PUT    /clients/:id
+DELETE /clients/:id
+```
+
+### Barbers
+
+```txt
+POST   /barbers
+GET    /barbers
+GET    /barbers/:id
+PUT    /barbers/:id
+DELETE /barbers/:id
+```
+
+### Appointments
+
+```txt
+POST   /appointments
+GET    /appointments
+GET    /appointments/:id
+PUT    /appointments/:id
+DELETE /appointments/:id
+```
+
+### Reports
+
+```txt
+GET /reports/appointments-by-status
+GET /reports/top-services
+GET /reports/top-barbers
+GET /reports/revenue
+```
+
+---
 
 ## Reportes disponibles
 
@@ -90,15 +232,48 @@ PostgreSQL
 * Barberos con más citas.
 * Ingresos totales por citas completadas.
 
-## Docker
+---
 
-El proyecto incluye configuración para ejecución con Docker.
+## Despliegue
+
+```txt
+GitHub Repository
+↓
+Dockerfile
+↓
+Railway Deployment
+↓
+Supabase PostgreSQL
+```
+
+---
+
+## Docker
 
 Archivos principales:
 
-* `Dockerfile`: define la imagen del backend.
-* `docker-compose.yml`: permite levantar el backend junto con PostgreSQL para pruebas locales.
-* `.dockerignore`: evita copiar archivos innecesarios o sensibles a la imagen.
-* `.env.example`: muestra las variables necesarias sin exponer credenciales reales.
+* `Dockerfile`
+* `docker-compose.yml`
+* `.dockerignore`
+* `.env.example`
 
+---
 
+## Estado del proyecto
+
+Estado actual: **Funcional**
+
+Características implementadas:
+
+* Autenticación JWT.
+* Autorización por roles.
+* CRUD de usuarios.
+* CRUD de clientes.
+* CRUD de servicios.
+* CRUD de barberos.
+* Gestión de citas.
+* Reportes operativos.
+* Docker.
+* Railway.
+* PostgreSQL.
+* Supabase.
