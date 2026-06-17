@@ -40,10 +40,9 @@ app.get("/", (req, res) => {    //al entrar a localhost, ejeuctar la funcion.
 
 const PORT = process.env.PORT || 3000;      //puerto para escuchar request
 
-app.listen(PORT, () => {        //inicia el servidor
+app.listen(Number(PORT), "0.0.0.0", () => {
     console.log(`servidor corriendo en el puerto ${PORT}`);
 });
-
 
 
 
