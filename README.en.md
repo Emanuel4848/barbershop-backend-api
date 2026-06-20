@@ -92,13 +92,37 @@ PostgreSQL
 
 ![System Architecture](./SystemArchitecture.png)
 
-### Running Application
+### Backend deployed to Railway
 
 ![Backend Running](./screenshots/appWeb.png)
 
-### Roles Endpoint
+### Endpoint for logging into the deployed backend using Supabase cloud credentials
+
+![Backend Running](./screenshots/auth.png)
+
+### Endpoint returning roles without authentication (cloud-hosted backend)
+
+![Backend Running](./screenshots/getRolesCloud.png)
+
+### Roles endpoint served by the cloud-hosted backend (requires a valid token).
 
 ![Roles Endpoint](./screenshots/getRoles.png)
+
+### Endpoint returning the most requested services (requires a valid token, local environment)
+
+![Roles Endpoint](./screenshots/topServices.png)
+
+### Endpoint returning clients (requires a valid token, local environment)
+
+![Roles Endpoint](./screenshots/getClients.png)
+
+### Endpoint muestra citas (pasandole token valido, esta vez local)
+
+![Roles Endpoint](./screenshots/getAppointments.png)
+
+### Endpoint returning appointments (requires a valid token, local environment)
+
+![Roles Endpoint](./screenshots/getAppointments.png)
 
 ---
 

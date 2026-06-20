@@ -86,20 +86,39 @@ PostgreSQL
 
 ---
 
-## Capturas del proyecto
+## Capturas del proyecto en la nube
 
 ### Arquitectura del sistema
 
 ![System Architecture](./SystemArchitecture.png)
 
-### Backend desplegado
+### Backend desplegado en railway
 
 ![Backend Running](./screenshots/appWeb.png)
 
+### Endpoint para iniciar sesión en el backend despleguado con credenciales de Base de datos Supebase en la nube
 
-### Endpoint muestra de roles
+![Backend Running](./screenshots/auth.png)
+
+### Endpoint para ver los roles sin estar autenticado: 
+
+![Backend Running](./screenshots/getRolesCloud.png)
+
+### Endpoint muestra de roles desde backend en la nube (pasandole token valido)
 
 ![Roles Endpoint](./screenshots/getRoles.png)
+
+### Endpoint muestra los servicios mas pedidos (pasandole token valido, esta vez local)
+
+![Roles Endpoint](./screenshots/topServices.png)
+
+### Endpoint muestra los clientes (pasandole token valido, esta vez local)
+
+![Roles Endpoint](./screenshots/getClients.png)
+
+### Endpoint muestra citas (pasandole token valido, esta vez local)
+
+![Roles Endpoint](./screenshots/getAppointments.png)
 
 ---
 
