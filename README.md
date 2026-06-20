@@ -114,7 +114,7 @@ PostgreSQL
 
 ### Endpoint muestra los clientes (pasandole token valido, esta vez local)
 
-![Roles Endpoint](./screenshots/getClients.png)
+![Roles Endpoint](./screenshots/getClientss.png)
 
 ### Endpoint muestra citas (pasandole token valido, esta vez local)
 
